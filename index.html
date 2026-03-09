@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimas Engineer | Professional Portfolio</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="loading">
+
+    <img src="wrench.png" id="custom-cursor" alt="wrench">
+
+    <div id="loader">
+        <div class="spinner"></div>
+        <div class="loading-text">Processing: <span id="percent">0</span>%</div>
+        <div class="loading-bar-container">
+            <div class="loading-bar" id="progress-bar"></div>
+        </div>
+    </div>
+
+    <header class="top-info-bar">
+        <div class="top-left">
+            <span class="status-dot"></span> System Online
+        </div>
+        <div class="top-center" id="current-date-time">Loading time...</div>
+        <div class="top-right">
+            <img id="flag-img" src="" alt="" style="display:none; width:18px; border:1px solid #000; margin-right:6px;">
+            <span id="user-ip">Detecting IP...</span>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <div class="logo">Dimas Engineer_v1.5</div>
+        <hr>
+        <ul class="nav-menu">
+            <li>[ <a href="index.html">Home</a> ]</li>
+            <li>[ <a href="semua.html">All Projects</a> ]</li>
+            <li>[ <a href="empty.html">Categories</a> ]</li>
+        </ul>
+        <hr>
+    </nav>
+
+    <main class="content-wrapper">
+        <section class="search-section">
+            <div class="search-container">
+                <label for="search-input">Search_Database//:> </label>
+                <input type="text" placeholder="Search apps, files..." id="search-input">
+                <button type="button" id="search-btn">[ SEARCH ]</button>
+            </div>
+        </section>
+
+        <section class="welcome-section">
+            <div class="wave-box">
+                <h2><b>WELCOME TO DIMAS PROJECT WEB</b></h2>
+                <p>Hello! Glad to see you here. Explore my engineering portfolios and projects through this simplified interface.</p>
+            </div>
+        </section>
+
+        <section class="project-slider-container">
+            <h2 class="section-title">== Featured Projects ==</h2>
+            <div class="slider-wrapper">
+                <div class="project-card">
+                    <img src="https://picsum.photos/id/1070/400/250" alt="Engine Development">
+                    <div class="card-info">
+                        <h3>Engine Development</h3>
+                        <p>Internal engine performance optimization.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://picsum.photos/id/1072/400/250" alt="Trail Prototype">
+                    <div class="card-info">
+                        <h3>Trail Prototype</h3>
+                        <p>Matte trail bike frame design.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://picsum.photos/id/3/400/250" alt="Technical Analysis">
+                    <div class="card-info">
+                        <h3>Technical Analysis</h3>
+                        <p>Deep research publication.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="access-info-section">
+            <h2 class="section-title">-- System Access Info --</h2>
+            <div class="info-card">
+                <div class="info-item">
+                    <span class="info-label">Access Device:</span>
+                    <span id="device-info" class="info-value">Detecting...</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">IP Address:</span>
+                    <span id="ip-info-display" class="info-value">Detecting...</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Access Via:</span>
+                    <span id="browser-info" class="info-value">Detecting...</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <hr>
+        <div class="contact-info">
+            <p>Contact: dimasengineerr@gmail.com | +62 813 9292 605 | @dimasengineer</p>
+        </div>
+        <div class="copyright">
+            (c) All Right Reserved 2019-2026. Built with Simplicity.
+        </div>
+        <div class="bottom-time-sync">
+            System Clock: <span id="tray-clock">00:00</span> | <span id="tray-date">01/01/2026</span>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
