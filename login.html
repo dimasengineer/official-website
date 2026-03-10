@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERMINAL_AUTH v1.0.9</title>
+    <link rel="stylesheet" href="CSS/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="scanlines"></div>
+    
+    <header class="top-bar">
+        <div class="nav-links">
+            <a href="index.html" class="retro-btn">[ HOME ]</a>
+        </div>
+        <div id="digital-clock" class="clock">00:00:00</div>
+    </header>
+
+    <main class="login-container">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="title">AUTH_GATEWAY -- user@ROOT</span>
+            </div>
+            
+            <div class="terminal-body">
+                <div class="welcome-text">
+                    <pre>
+   _____   _____ _______ _____  ____  
+  |  __ \ / ____|__   __|  __ \|  _ \ 
+  | |__) | (___    | |  | |__) | | | |
+  |  ___/ \___ \   | |  |  _  /| | | |
+  |_|     |_____/   |_|  |_| \_\|_| |_|
+                    </pre>
+                    <p>SYSTEM ACCESS REQUIRED</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">USER_ID:</label>
+                    <input type="email" id="email" placeholder="..." autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="password">SECRET_KEY:</label>
+                    <input type="password" id="password" placeholder="...">
+                </div>
+
+                <div class="actions">
+                    <button id="loginBtn" class="exec-btn">> EXECUTE_LOGIN</button>
+                </div>
+
+                <div id="console-msg" class="message">READY...</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="JS/login.js"></script>
+</body>
+</html>

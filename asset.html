@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404_NOT_FOUND // PROTEGO</title>
+    <link rel="stylesheet" href="CSS/asset.css">
+</head>
+<body>
+    <div class="scanlines"></div>
+
+    <header class="fixed-header">
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">[ HOME ]</a>
+            <a href="dashboard.html" class="nav-link">[ DASHBOARD ]</a>
+        </nav>
+        <div id="live-clock" class="clock-display">00:00:00</div>
+    </header>
+
+    <main class="error-wrapper">
+        <div class="error-container">
+            <div class="terminal-header">
+                <span class="prefix">CRITICAL_ERROR</span>
+            </div>
+            <div class="error-content">
+                <h1 class="glitch" data-text="404">404</h1>
+                <h2 class="sub-error">RESOURCE_NOT_FOUND</h2>
+                <div class="separator">============================</div>
+                <p class="description">
+                    > The requested asset is missing from the server.<br>
+                    > Tracking... [FAILED]<br>
+                    > Location: /dev/null
+                </p>
+                <div class="action-zone">
+                    <a href="index.html" class="btn-retro">REBOOT_TO_HOME</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="JS/asset.js"></script>
+</body>
+</html>

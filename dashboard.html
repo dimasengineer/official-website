@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYS_DASHBOARD // PROTEGO</title>
+    <link rel="stylesheet" href="CSS/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="scanlines"></div>
+
+    <header class="fixed-header">
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">[ HOME ]</a>
+            <a href="dashboard.html" class="nav-link active">[ DASHBOARD ]</a>
+            <a href="asset.html" class="nav-link">[ ALL ]</a>
+        </nav>
+        <div id="live-clock" class="clock-display">00:00:00</div>
+    </header>
+
+    <main class="main-content">
+        <div class="terminal-card">
+            <div class="card-header">STATION_INFO: <span id="user-display">DETECTING...</span></div>
+            <div class="card-body">
+                <h1 class="welcome-msg">LOGIN_SUCCESSFUL</h1>
+                <p class="status-text">> Authenticated as: <span id="user-email" class="highlight">...</span></p>
+                <p class="status-text">> System Status: <span class="blink">OPTIMAL</span></p>
+                <div class="action-zone">
+                    <button onclick="handleLogout()" class="btn-retro">TERMINATE_SESSION</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="JS/dashboard.js"></script>
+</body>
+</html>
