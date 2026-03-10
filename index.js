@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(loadInt);
             loader.style.display = 'none';
             const customCursor = document.getElementById('custom-cursor');
+            // Show wrench only on desktop
             if(customCursor && window.matchMedia("(hover: hover)").matches) {
                 customCursor.style.opacity = '1';
             }
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 40);
 
-    // 2. Wrench Cursor
+    // 2. Wrench Cursor Logic (Desktop Only)
     const customCursor = document.getElementById('custom-cursor');
     if (customCursor && window.matchMedia("(hover: hover)").matches) {
         document.addEventListener('mousemove', (e) => {
@@ -36,49 +37,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Real-time Clock (English Format)
-    function updateClock() {
+    // 3. Real-time Clock & System Info
+    function updateSystemInfo() {
         const now = new Date();
         
+        // Bottom Tray Clock
         const trayClock = document.getElementById('tray-clock');
         const trayDate = document.getElementById('tray-date');
         if(trayClock) trayClock.innerText = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
         if(trayDate) trayDate.innerText = now.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
 
+        // Top Bar Clock
         const topClock = document.getElementById('current-date-time');
         if(topClock) {
-            const options = { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const options = { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' };
             topClock.innerText = new Intl.DateTimeFormat('en-US', options).format(now);
         }
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
 
-    // 4. Device & Browser Detection (English)
+        // Device Detection Logic
+        const ua = navigator.userAgent;
+        let device = "Desktop PC";
+        if (/Mobi|Android|iPhone|iPad/i.test(ua) || window.innerWidth <= 768) {
+            device = "Mobile Device";
+        }
+        const deviceDisplay = document.getElementById('device-info');
+        if(deviceDisplay) deviceDisplay.innerText = device;
+    }
+
+    setInterval(updateSystemInfo, 1000);
+    updateSystemInfo();
+
+    // 4. Browser Detection
     const ua = navigator.userAgent;
     let browser = "Others";
     if (ua.includes("Chrome")) browser = "Google Chrome";
     else if (ua.includes("Safari")) browser = "Apple Safari";
     else if (ua.includes("Firefox")) browser = "Mozilla Firefox";
+    
+    const browserDisplay = document.getElementById('browser-info');
+    if(browserDisplay) browserDisplay.innerText = browser;
 
-    let device = "Desktop PC";
-    if (window.innerWidth <= 768 || /Mobi|Android/i.test(ua)) device = "Mobile Device";
-
-    document.getElementById('browser-info').innerText = browser;
-    document.getElementById('device-info').innerText = device;
-
-    // 5. IP API (English)
+    // 5. IP Address API
     fetch('https://ipapi.co/json/')
         .then(res => res.json())
         .then(data => {
-            document.getElementById('user-ip').innerText = data.ip;
-            document.getElementById('ip-info-display').innerText = `${data.ip} (${data.country_name})`;
+            const userIp = document.getElementById('user-ip');
+            const ipDisplay = document.getElementById('ip-info-display');
             const flag = document.getElementById('flag-img');
-            flag.src = `https://flagcdn.com/w40/${data.country_code.toLowerCase()}.png`;
-            flag.style.display = 'inline-block';
+
+            if(userIp) userIp.innerText = data.ip;
+            if(ipDisplay) ipDisplay.innerText = `${data.ip} (${data.country_code})`;
+            if(flag) {
+                flag.src = `https://flagcdn.com/w40/${data.country_code.toLowerCase()}.png`;
+                flag.style.display = 'inline-block';
+            }
         })
         .catch(() => {
-            document.getElementById('user-ip').innerText = "Local IP";
-            document.getElementById('ip-info-display').innerText = "127.0.0.1 (Offline)";
+            const ipDisplay = document.getElementById('ip-info-display');
+            if(ipDisplay) ipDisplay.innerText = "127.0.0.1 (Local)";
         });
 });
