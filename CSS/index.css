@@ -1,0 +1,152 @@
+:root {
+    --bg-main: #c0c0c0;
+    --text-main: #000000;
+    --accent: #000080;
+    --border-light: #ffffff;
+    --border-dark: #808080;
+}
+
+/* Base Reset */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: "Courier New", Courier, monospace; 
+}
+
+/* Custom Cursor - Only active on devices with a mouse */
+@media (hover: hover) {
+    * { cursor: none !important; }
+    #custom-cursor { display: block; }
+}
+
+/* For Touch Devices - Use standard cursor for better UX */
+@media (hover: none) {
+    #custom-cursor { display: none !important; }
+    * { cursor: auto !important; }
+}
+
+body { 
+    background: var(--bg-main); 
+    color: var(--text-main); 
+    padding-top: 50px; 
+    overflow-x: hidden; 
+}
+
+/* --- CUSTOM CURSOR --- */
+#custom-cursor { 
+    position: fixed; 
+    width: 32px; 
+    height: 32px; 
+    pointer-events: none; 
+    z-index: 10000; 
+    transform: translate(-50%, -50%); 
+    opacity: 0; 
+    transition: opacity 0.3s; 
+}
+.click-rotate { animation: wrenchRotate 0.4s steps(8); }
+@keyframes wrenchRotate { 
+    from {transform: translate(-50%, -50%) rotate(0deg);} 
+    to {transform: translate(-50%, -50%) rotate(360deg);} 
+}
+
+/* --- LOADER --- */
+#loader { 
+    position: fixed; 
+    inset: 0; 
+    background: #c0c0c0; 
+    z-index: 9999; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px;
+}
+.spinner { 
+    width: 40px; height: 40px; 
+    border: 4px solid #808080; border-top-color: #000; 
+    border-radius: 50%; animation: spin 1s linear infinite; 
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-bar-container { 
+    width: 100%; max-width: 250px; 
+    height: 20px; border: 2px solid #000; 
+    background: #fff; margin-top: 10px; 
+}
+.loading-bar { height: 100%; background: var(--accent); width: 0%; transition: 0.1s; }
+
+/* --- TOP BAR (Responsive) --- */
+.top-info-bar { 
+    min-height: 30px; background: #000; color: #fff; 
+    display: flex; flex-wrap: wrap; justify-content: space-between; 
+    align-items: center; padding: 5px 15px; 
+    position: fixed; top: 0; width: 100%; z-index: 1000; font-size: 11px; 
+}
+
+/* --- NAVBAR --- */
+.navbar { padding: 15px 10px; text-align: center; }
+.nav-menu { 
+    list-style: none; display: flex; flex-wrap: wrap; 
+    justify-content: center; gap: 10px; padding: 10px 0; 
+}
+.nav-menu a { color: var(--accent); text-decoration: none; font-weight: bold; padding: 5px; }
+
+/* --- CONTENT WRAPPER --- */
+.content-wrapper { padding: 15px; max-width: 900px; margin: 0 auto; }
+
+/* --- SEARCH SECTION --- */
+.search-container { 
+    border: 2px solid #000; padding: 5px; background: #fff; 
+    display: flex; flex-wrap: wrap; margin-bottom: 30px; 
+}
+.search-container input { flex: 1; min-width: 150px; border: none; padding: 10px; font-size: 16px; outline: none; }
+.search-container button { 
+    width: 100%; background: #c0c0c0; border: 2px solid #000; 
+    padding: 10px; cursor: pointer; font-weight: bold; 
+}
+
+@media (min-width: 600px) {
+    .search-container button { width: auto; }
+}
+
+/* --- WELCOME SECTION --- */
+.welcome-section { 
+    border: 2px solid #000; background: #fff; padding: 20px; 
+    margin-bottom: 30px; box-shadow: 5px 5px 0px #808080; 
+}
+
+/* --- PROJECT SLIDER (Mobile Friendly) --- */
+.slider-wrapper { 
+    display: flex; gap: 20px; overflow-x: auto; 
+    padding-bottom: 15px; scroll-snap-type: x mandatory; 
+    -webkit-overflow-scrolling: touch;
+}
+.project-card { 
+    min-width: 280px; border: 2px solid #000; background: #fff; 
+    scroll-snap-align: start; 
+}
+.project-card img { width: 100%; height: 160px; object-fit: cover; border-bottom: 2px solid #000; filter: grayscale(50%); }
+
+/* --- INFO CARD --- */
+.info-card { border: 2px solid #000; padding: 15px; background: #eee; }
+.info-item { 
+    margin-bottom: 10px; border-bottom: 1px dashed #808080; 
+    padding-bottom: 5px; display: flex; flex-direction: column; 
+}
+
+@media (min-width: 600px) {
+    .info-item { flex-direction: row; justify-content: space-between; }
+}
+
+/* --- FOOTER --- */
+.footer { padding: 30px 10px; text-align: center; font-size: 12px; }
+.bottom-time-sync { 
+    margin-top: 15px; font-weight: bold; color: var(--accent); 
+    display: flex; flex-direction: column; gap: 5px; align-items: center;
+}
+
+@media (min-width: 500px) {
+    .bottom-time-sync { flex-direction: row; justify-content: center; gap: 15px; }
+}
+
+hr { border: 0; border-top: 2px solid #000; margin: 15px 0; }
