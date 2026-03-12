@@ -1,171 +1,109 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import "./App.css";
 
-export default function App(){
+export default function App() {
 
-  const [screen,setScreen] = useState("")
-  const [resolution,setResolution] = useState("")
-  const [device,setDevice] = useState("")
-  const [ip,setIp] = useState("")
-  const [country,setCountry] = useState("")
-  const [time,setTime] = useState("")
-  const [date,setDate] = useState("")
+  const [info, setInfo] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+    device: "Unknown",
+    ip: "Loading...",
+    country: "Loading...",
+    date: "",
+    time: ""
+  });
 
-  useEffect(()=>{
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return "Good Morning";
+    if (hour < 18) return "Good Afternoon";
+    return "Good Evening";
+  };
 
-    function detectScreen(){
+  useEffect(() => {
 
-      const width = window.innerWidth
-      const height = window.innerHeight
+    const updateScreen = () => {
+      setInfo(prev => ({
+        ...prev,
+        width: window.innerWidth,
+        height: window.innerHeight
+      }));
+    };
 
-      setResolution(width + " x " + height)
+    window.addEventListener("resize", updateScreen);
 
-      if(width < 480) setScreen("Small Mobile")
-      else if(width < 768) setScreen("Mobile")
-      else if(width < 1024) setScreen("Tablet")
-      else if(width < 1440) setScreen("Desktop")
-      else setScreen("Large Desktop")
+    // device detect
+    const ua = navigator.userAgent;
+    let device = "Desktop";
 
-      const ua = navigator.userAgent
+    if (/mobile/i.test(ua)) device = "Mobile";
+    else if (/tablet/i.test(ua)) device = "Tablet";
 
-      if(/mobile/i.test(ua)) setDevice("Mobile Browser")
-      else if(/tablet/i.test(ua)) setDevice("Tablet")
-      else setDevice("Desktop Browser")
-
-    }
-
-    detectScreen()
-
-    window.addEventListener("resize",detectScreen)
-
+    // IP API
     fetch("https://ipapi.co/json/")
-      .then(res=>res.json())
-      .then(data=>{
-        setIp(data.ip)
-        setCountry(data.country_name)
-      })
+      .then(res => res.json())
+      .then(data => {
+        setInfo(prev => ({
+          ...prev,
+          ip: data.ip,
+          country: data.country_name,
+          device
+        }));
+      });
 
-    setInterval(()=>{
+    // clock
+    const clock = setInterval(() => {
+      const now = new Date();
+      setInfo(prev => ({
+        ...prev,
+        date: now.toLocaleDateString(),
+        time: now.toLocaleTimeString()
+      }));
+    }, 1000);
 
-      const now = new Date()
+    return () => {
+      window.removeEventListener("resize", updateScreen);
+      clearInterval(clock);
+    };
 
-      setTime(now.toLocaleTimeString())
+  }, []);
 
-      setDate(
-        now.toLocaleDateString(undefined,{
-          weekday:"long",
-          year:"numeric",
-          month:"long",
-          day:"numeric"
-        })
-      )
-
-    },1000)
-
-  },[])
-
-  return(
-
-    <div>
+  return (
+    <div className="container">
 
       {/* NAVBAR */}
+      <nav className="navbar">
+        <div className="logo">PROTEGOSS</div>
 
-      <nav style={navStyle}>
-
-        <div style={{fontWeight:"600"}}>
-
-          Modern Site
-
+        <div className="menu">
+          <a href="#">Home</a>
+          <a href="/official-website/index.html">Back</a>
         </div>
-
-        <div>
-
-          <a href="/official-website/modern/" style={linkStyle}>
-            Home
-          </a>
-
-          <a href="/official-website/" style={linkStyle}>
-            Back
-          </a>
-
-        </div>
-
       </nav>
 
+      {/* SEARCH BAR */}
+      <div className="searchBox">
+        <input placeholder="Search..." />
+      </div>
 
-      {/* CENTER BOX */}
+      {/* TITLE */}
+      <h1 className="title">PROTEGOSS</h1>
 
-      <div style={containerStyle}>
+      {/* GREETING */}
+      <p className="greeting">{getGreeting()}, Welcome.</p>
 
-        <div style={infoBox}>
+      {/* INFO BOX */}
+      <div className="infoBox">
 
-          <h2>System Information</h2>
-
-          <p><b>Screen Type:</b> {screen}</p>
-
-          <p><b>Resolution:</b> {resolution}</p>
-
-          <p><b>Access Via:</b> {device}</p>
-
-          <p><b>IP Address:</b> {ip}</p>
-
-          <p><b>Country:</b> {country}</p>
-
-          <p><b>Date:</b> {date}</p>
-
-          <p><b>Time:</b> {time}</p>
-
-        </div>
+        <p><b>Screen Type:</b> {info.device}</p>
+        <p><b>Resolution:</b> {info.width} x {info.height}</p>
+        <p><b>IP Address:</b> {info.ip}</p>
+        <p><b>Country:</b> {info.country}</p>
+        <p><b>Date:</b> {info.date}</p>
+        <p><b>Time:</b> {info.time}</p>
 
       </div>
 
     </div>
-
-  )
-
-}
-
-
-/* STYLES */
-
-const navStyle = {
-
-  display:"flex",
-  justifyContent:"space-between",
-  alignItems:"center",
-  padding:"16px 32px",
-  backdropFilter:"blur(20px)",
-  background:"rgba(255,255,255,0.25)",
-  position:"sticky",
-  top:0
-
-}
-
-const linkStyle = {
-
-  marginLeft:"20px",
-  textDecoration:"none",
-  color:"#000",
-  fontWeight:"500"
-
-}
-
-const containerStyle = {
-
-  display:"flex",
-  justifyContent:"center",
-  alignItems:"center",
-  height:"80vh"
-
-}
-
-const infoBox = {
-
-  backdropFilter:"blur(25px)",
-  background:"rgba(255,255,255,0.35)",
-  padding:"40px",
-  borderRadius:"20px",
-  width:"90%",
-  maxWidth:"420px",
-  boxShadow:"0 10px 30px rgba(0,0,0,0.2)"
-
+  );
 }
