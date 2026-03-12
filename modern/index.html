@@ -1,13 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Protegoss</title>
-  <script type="module" crossorigin src="/official-website/modern/assets/index-BQquXBVV.js"></script>
-  <link rel="stylesheet" crossorigin href="/official-website/modern/assets/index-C8N5FYjC.css">
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Protego | Professional Portfolio</title>
+
+<link rel="stylesheet" href="CSS/index.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
 </head>
-<body>
-  <div id="root"></div>
+
+<body class="loading">
+
+
+<img src="assets/wrench.png" id="custom-cursor" alt="wrench">
+
+
+<div id="loader">
+
+<div class="spinner"></div>
+
+<div class="loading-text">
+
+Processing: <span id="percent">0</span>%
+
+</div>
+
+<div class="loading-bar-container">
+
+<div class="loading-bar" id="progress-bar"></div>
+
+</div>
+
+</div>
+
+
+<header class="top-info-bar">
+
+<div class="top-left">
+
+<span class="status-dot"></span> System Online
+
+</div>
+
+<div class="top-center" id="current-date-time">
+
+Loading time...
+
+</div>
+
+<div class="top-right">
+
+<img id="flag-img"
+src=""
+alt=""
+style="display:none;width:18px;border:1px solid #000;margin-right:6px;">
+
+<span id="user-ip">
+
+Detecting IP...
+
+</span>
+
+</div>
+
+</header>
+
+
+<nav class="navbar">
+
+<div class="nav-container">
+
+<div class="logo">Protego v1.8</div>
+
+<ul class="nav-menu">
+
+<li>[ <a href="index.html">Home</a> ]</li>
+
+<li>[ <a href="semua.html">All Projects</a> ]</li>
+
+<li>[ <a href="login.html">Login</a> ]</li>
+
+<li><a href="/official-website/modern/">Other</a></li>
+
+</ul>
+
+</div>
+
+</nav>
+
+
+
+<main class="content-wrapper">
+
+<section class="search-section">
+
+<div class="search-container">
+
+<label for="search-input">
+
+Search_DB//:>
+
+</label>
+
+<input
+type="text"
+placeholder="Search apps, files..."
+id="search-input">
+
+<button
+type="button"
+id="search-btn">
+
+[ SEARCH ]
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<section class="welcome-section">
+
+<div class="wave-box">
+
+<h2>
+
+<b>WELCOME TO DIMAS PROJECT WEB</b>
+
+</h2>
+
+<p>
+
+Hello! Glad to see you here. Explore my engineering portfolios and projects through this simplified interface.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<section class="project-slider-container">
+
+<h2 class="section-title">
+
+== Featured Projects ==
+
+</h2>
+
+<div class="slider-wrapper">
+
+
+<div class="project-card">
+
+<img src="assets/arduino.jpg" alt="Engine Development">
+
+<div class="card-info">
+
+<h3>Microcontroller</h3>
+
+<p>
+
+Develop Microcontroller for temperature as a feature engine.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="project-card">
+
+<img src="assets/engine.jpg" alt="Trail Prototype">
+
+<div class="card-info">
+
+<h3>Prototype V-Engine</h3>
+
+<p>
+
+Develope Prototype V-Engine and describe how it works.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="project-card">
+
+<img src="assets/piston.jpg" alt="Technical Analysis">
+
+<div class="card-info">
+
+<h3>Prototype Piston</h3>
+
+<p>
+
+Prototype a Piston and describe how it works.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="access-info-section">
+
+<h2 class="section-title">
+
+-- System Access Info --
+
+</h2>
+
+<div class="info-card">
+
+<div class="info-item">
+
+<span class="info-label">Access Device:</span>
+
+<span id="device-info" class="info-value">
+
+Detecting...
+
+</span>
+
+</div>
+
+<div class="info-item">
+
+<span class="info-label">IP Address:</span>
+
+<span id="ip-info-display" class="info-value">
+
+Detecting...
+
+</span>
+
+</div>
+
+<div class="info-item">
+
+<span class="info-label">Access Via:</span>
+
+<span id="browser-info" class="info-value">
+
+Detecting...
+
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+
+<footer class="footer">
+
+<div class="footer-container">
+
+<p>
+
+Contact: dimasengineerr@gmail.com | +62 813 9292 605 | @dimasengineer
+
+</p>
+
+<p>
+
+(c) All Right Reserved 2019-2026. Built with Simplicity.
+
+</p>
+
+<div class="bottom-time-sync">
+
+System Clock:
+
+<span id="tray-clock">00:00</span>
+
+|
+
+<span id="tray-date">01/01/2026</span>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<script src="JS/index.js"></script>
+
 </body>
+
 </html>
